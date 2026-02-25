@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("start-btn");
+  const prevNextContainer = document.getElementById("prev-next-container");
   const prevButton = document.getElementById("prev-btn");
   const nextButton = document.getElementById("next-btn");
   const restartButton = document.getElementById("restart-btn");
@@ -155,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentIndex = 0;
   let score = 0;
+  let userAnswers = [];
   prevButton.addEventListener("click", prevQuestion);
   nextButton.addEventListener("click", nextQuestion);
   scoreButton.addEventListener("click", showScore);
@@ -168,51 +170,44 @@ document.addEventListener("DOMContentLoaded", () => {
   //function area
 
   function startQuiz() {
-    startButton.classList.add("hideen");
+    startButton.classList.add("hidden");
     resultContainer.classList.add("hidden");
     questionContainer.classList.remove("hidden");
     showQuestion();
     showChoices();
   }
   function showQuestion() {
-    questionContainer.innerHTML = "";
-
-    // getting the current objects out of the the three objects, in my case i am starting with the first object
     const currentQuestion = quizQuestion[currentIndex];
-    //creating my h2 element
-    const h2 = document.createElement("h2");
-    //putting my object property-value as the created element text
-    h2.textContent = currentQuestion.question;
-    //making the element appear in the container on the screen
-    questionContainer.appendChild(h2);
+    questionText.textContent = currentQuestion.question;
   }
 
   function showChoices() {
     const currentChoices = quizQuestion[currentIndex];
     choicesList.innerHTML = "";
+
     currentChoices.choices.forEach((choice) => {
       const li = document.createElement("li");
       li.textContent = choice;
+      if (userAnswers[currentIndex] === choice) {
+        li.classList.add("selected");
+        nextButton.classList.remove("hidden");
+      }
       li.addEventListener("click", () => {
         choicesList
           .querySelectorAll("li")
           .forEach((item) => item.classList.remove("selected"));
         li.classList.add("selected");
-        prevButton.classList.remove("hidden");
+        userAnswers[currentIndex] = choice;
+        if (currentIndex > 0) {
+          prevButton.classList.remove("hidden");
+        } else {
+          prevButton.classList.add("hidden");
+        }
         nextButton.classList.remove("hidden");
-        questionContainer.appendChild(prevButton);
-        questionContainer.appendChild(nextButton);
       });
       li.addEventListener("click", () => scoreCal(choice));
       choicesList.appendChild(li);
-      questionContainer.appendChild(choicesList);
     });
-
-    if (currentIndex === 0) {
-      prevButton.classList.add("hidden");
-    } else {
-      prevButton.classList.remove("hidden");
-    }
   }
 
   function nextQuestion() {
