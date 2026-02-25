@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,14 +8,17 @@
   </head>
   <body>
     <div class="container">
-      <h1>Quiz App</h1>
+      <h1 id="quiz-app" class="quiz-app-color">Quiz App</h1>
       <div id="quiz-container">
         <div id="question-container" class="hidden">
           <h2 id="question-text"></h2>
           <ul id="choices-list">
             <!-- Choices will be added dynamically here -->
           </ul>
+
+          <button id="prev-btn" class="hidden">Previous Question</button>
           <button id="next-btn" class="hidden">Next Question</button>
+
           <button id="score-btn" class="hidden">Check Score</button>
         </div>
         <div id="result-container" class="hidden">
