@@ -74,16 +74,24 @@ button {
   transition: background-color 0.3s;
 }
 
-#prev-next-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 28px;
-}
-
 button:hover {
   background-color: #3700b3;
 }
 
 .hidden {
   display: none;
+}
+
+#navigator {
+  display: flex;
+  gap: 20px;
+}
+
+.special-font1 {
+  font-family: Boldonse;
+}
+
+.special-font2 {
+  font-family: Oswald;
+  font-size: 20px;
 }
