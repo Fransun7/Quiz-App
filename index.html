@@ -24,6 +24,13 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -45,11 +52,17 @@
           <h2>Your Score:</h2>
           <p id="score"></p>
           <button id="review">Review Answers</button>
-          <button id="restart-btn">Restart Quiz</button>
+          <button id="restart-btn1">Restart Quiz</button>
         </div>
 
-        <div id="review-container" class="hidden"></div>
         <button id="start-btn">Start Quiz</button>
+      </div>
+
+      <div id="review-container" class="hidden">
+        <div id="review-navigator">
+          <button id="restart-btn2">Restart</button>
+          <button id="review-next-btn">Next</button>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>

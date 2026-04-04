@@ -22,6 +22,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
+  position: relative;
 }
 
 .quiz-app-color {
@@ -72,6 +73,7 @@ button {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-family: "Saira Stencil", sans-serif;
 }
 
 button:hover {
@@ -94,4 +96,9 @@ button:hover {
 .special-font2 {
   font-family: Oswald;
   font-size: 20px;
+}
+
+#restart-btn2 {
+  width: 100px;
+  font-size: medium;
 }

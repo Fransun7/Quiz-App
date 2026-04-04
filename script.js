@@ -9,10 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreBtn = document.getElementById("score-btn");
   const resultContainer = document.getElementById("result-container");
   const userScore = document.getElementById("score");
-  const restartBtn = document.getElementById("restart-btn");
+  const restartBtn1 = document.getElementById("restart-btn1");
   const quizStatus = document.getElementById("quiz-status");
   const reviewBtn = document.getElementById("review");
   const reviewContainer = document.getElementById("review-container");
+  // const restartContainer = document.getElementById("restart-container");
+  const restartBtn2 = document.getElementById("restart-btn2");
+  const reviewNextBtn = document.getElementById("review-next-btn");
+  const reviewNavigator = document.getElementById("review-navigator");
 
   //   Array of objects that holds the question, choices and answers
   const quizQuestions = [
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Setting the index of my object to be equal to 0 at first so it can start the quiz at the first question
   let currentIndex = 0;
+  let reviewIndex = 0;
   let selectedChoice = null;
 
   // score is at 0 at default
@@ -69,9 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
       displayScore();
     });
   }
+
   // Restart the quiz afresh
-  if (restartBtn) {
-    restartBtn.addEventListener("click", () => {
+  if (restartBtn1) {
+    restartBtn1.addEventListener("click", () => {
       score = 0;
       selectedChoice = null;
       resultContainer.classList.add("hidden");
@@ -81,51 +87,73 @@ document.addEventListener("DOMContentLoaded", () => {
       scoreBtn.classList.add("hidden");
       questionText.classList.remove("hidden");
       choicesList.classList.remove("hidden");
+      reviewContainer.classList.add("hidden");
       startQuiz();
     });
   }
+
+  // second restart button that functions in review
+  if (restartBtn2) {
+    restartBtn2.addEventListener("click", () => {
+      score = 0;
+      selectedChoice = null;
+      resultContainer.classList.add("hidden");
+      currentIndex = 0;
+      questionContainer.classList.remove("hidden");
+      quizStatus.innerHTML = "";
+      scoreBtn.classList.add("hidden");
+      questionText.classList.remove("hidden");
+      choicesList.classList.remove("hidden");
+      reviewContainer.classList.add("hidden");
+      startQuiz();
+    });
+  }
+
   // user can review questions and answers
   if (reviewBtn) {
     reviewBtn.addEventListener("click", () => {
+      reviewIndex = 0;
       reviewContainer.classList.remove("hidden");
       resultContainer.classList.add("hidden");
       reviewContainer.innerHTML = "";
+      showReview();
 
-      quizQuestions.forEach((question, index) => {
-        // creating a div element that wraps the items in the review container
-        const reviewContents = document.createElement("div");
+      // quizQuestions.forEach((question, index) => {
+      //   // creating a div element that wraps the items in the review container
+      //   const reviewContents = document.createElement("div");
 
-        // creating a p element for the question
-        const userQuestionText = document.createElement("p");
-        userQuestionText.textContent = question.question;
-        userQuestionText.classList.add("special-font1");
+      //   // creating a h3 element for the question
+      //   const userQuestionText = document.createElement("h3");
+      //   userQuestionText.textContent = question.question;
+      //   userQuestionText.classList.add("special-font1");
 
-        // p element for the userAnswer
-        const userAnswerText = document.createElement("p");
-        userAnswerText.textContent = `Your answer: ${userAnswer[index]}`;
-        userAnswerText.classList.add("special-font2");
+      //   // p element for the userAnswer
+      //   const userAnswerText = document.createElement("p");
+      //   userAnswerText.textContent = `Your answer: ${userAnswer[index]}`;
+      //   userAnswerText.classList.add("special-font2");
 
-        // p element for the correct answer
-        const correctAnswerText = document.createElement("p");
-        correctAnswerText.style.color = "yellow";
-        correctAnswerText.textContent = `Correct answer: ${question.answer} `;
+      //   // p element for the correct answer
+      //   const correctAnswerText = document.createElement("p");
+      //   correctAnswerText.style.color = "yellow";
+      //   correctAnswerText.textContent = `Correct answer: ${question.answer} `;
 
-        if (userAnswer[index] === question.answer) {
-          userAnswerText.style.color = "green";
-          userAnswerText.textContent = `Your answer: ${userAnswer[index]} "✅"`;
-        } else {
-          userAnswerText.style.color = "red";
-          userAnswerText.textContent = `Your answer: ${userAnswer[index]} "❌"`;
-        }
+      //   if (userAnswer[index] === question.answer) {
+      //     userAnswerText.style.color = "green";
+      //     userAnswerText.textContent = `Your answer: ${userAnswer[index]} "✅"`;
+      //   } else {
+      //     userAnswerText.style.color = "red";
+      //     userAnswerText.textContent = `Your answer: ${userAnswer[index]} "❌"`;
+      //   }
 
-        // appending the content in the div created to the div
-        reviewContents.appendChild(userQuestionText);
-        reviewContents.appendChild(userAnswerText);
-        reviewContents.appendChild(correctAnswerText);
+      //   // appending the content in the div created to the div
+      //   reviewContents.appendChild(userQuestionText);
+      //   reviewContents.appendChild(userAnswerText);
+      //   reviewContents.appendChild(correctAnswerText);
 
-        // appending the review content to review container that is created in html
-        reviewContainer.appendChild(reviewContents);
-      });
+      //   // appending the review content to review container that is created in html
+      //   reviewContainer.appendChild(reviewContents);
+      //   reviewContainer.appendChild(restartBtn2);
+      // });
     });
   }
 
@@ -241,4 +269,48 @@ document.addEventListener("DOMContentLoaded", () => {
     showQuestion();
     showChoices();
   }
+
+  function showReview() {
+    const reviewQuestion = quizQuestions[reviewIndex];
+    const reviewUserAnswer = userAnswer[reviewIndex];
+    const reviewCorrectAnswer = reviewQuestion.answer;
+    reviewContainer.innerHTML = "";
+    // the div
+    const reviewContent = document.createElement("div");
+
+    // question
+    const userQuestionText = document.createElement("h3");
+    userQuestionText.textContent = reviewQuestion.question;
+
+    // user answer
+    const userChoice = document.createElement("p");
+    userChoice.textContent = `Your answer: ${reviewUserAnswer}`;
+
+    // correctAnswer
+    const correctAnswer = document.createElement("p");
+    correctAnswer.textContent = `Correct answer: ${reviewCorrectAnswer}`;
+
+    // next button visibility
+    if (reviewIndex === quizQuestions.length - 1) {
+      reviewNextBtn.classList.add("hidden");
+    } else {
+      reviewNextBtn.classList.remove("hidden");
+    }
+
+    reviewContent.appendChild(userQuestionText);
+    reviewContent.appendChild(userChoice);
+    reviewContent.appendChild(correctAnswer);
+    reviewContent.appendChild(reviewNavigator);
+    // reviewContent.appendChild(reviewNextBtn);
+    reviewContainer.appendChild(reviewContent);
+
+    //   const reviewUserAnser = userAnswer[reviewIndex];
+    //   reviewUserAnser.textContent = `Your answer: ${userAnswer[reviewCurrentQuestion]}`;
+  }
+
+  // what happens when next button is clicked in review
+  reviewNextBtn.addEventListener("click", () => {
+    reviewIndex++;
+    showReview();
+  });
 });
