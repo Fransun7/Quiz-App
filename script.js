@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const reviewBtn = document.getElementById("review");
   const reviewContainer = document.getElementById("review-container");
   // const restartContainer = document.getElementById("restart-container");
+  const reviewPrevBtn = document.getElementById("review-prev-btn");
   const restartBtn2 = document.getElementById("restart-btn2");
   const reviewNextBtn = document.getElementById("review-next-btn");
   const reviewNavigator = document.getElementById("review-navigator");
@@ -290,6 +291,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const correctAnswer = document.createElement("p");
     correctAnswer.textContent = `Correct answer: ${reviewCorrectAnswer}`;
 
+    // previous button visibility
+    if (reviewIndex === 0) {
+      reviewPrevBtn.classList.add("hidden");
+    } else {
+      reviewPrevBtn.classList.remove("hidden");
+    }
+
     // next button visibility
     if (reviewIndex === quizQuestions.length - 1) {
       reviewNextBtn.classList.add("hidden");
@@ -307,6 +315,12 @@ document.addEventListener("DOMContentLoaded", () => {
     //   const reviewUserAnser = userAnswer[reviewIndex];
     //   reviewUserAnser.textContent = `Your answer: ${userAnswer[reviewCurrentQuestion]}`;
   }
+
+  // what happens when previous button is clicked in review
+  reviewPrevBtn.addEventListener("click", () => {
+    reviewIndex--;
+    showReview();
+  });
 
   // what happens when next button is clicked in review
   reviewNextBtn.addEventListener("click", () => {
