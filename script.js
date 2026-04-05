@@ -21,22 +21,149 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //   Array of objects that holds the question, choices and answers
   const quizQuestions = [
-    {
-      question: "What is the capital of Nigeria?",
-      choices: ["Abuja", "Paris", "Lagos", "Tokyo", "England"],
-      answer: "Abuja",
-    },
+    // {
+    //   question: "What is the capital of Nigeria?",
+    //   choices: ["Abuja", "Paris", "Lagos", "Tokyo", "England"],
+    //   answer: "Abuja",
+    // },
+
+    // {
+    //   question: "What is the capital of United State of America?",
+    //   choices: ["Mumbai", "Paris", "Lagos", "Washignton DC", "London"],
+    //   answer: "Washignton DC",
+    // },
+
+    // {
+    //   question: "What is the third planent from the sun?",
+    //   choices: ["Mecury", "Jupiter", "Pluto", "Earth", "Mars"],
+    //   answer: "Earth",
+    // },
 
     {
-      question: "What is the capital of United State of America?",
-      choices: ["Mumbai", "Paris", "Lagos", "Washignton DC", "London"],
-      answer: "Washignton DC",
+      question:
+        "Which organelle is responsible for producing energy in a cell?",
+      choices: [
+        "Nucleus",
+        "Ribosome",
+        "Mitochondria",
+        "Golgi apparatus",
+        "Lysosome",
+      ],
+      answer: "Mitochondria",
+    },
+    {
+      question: "What is the basic unit of heredity?",
+      choices: ["Chromosome", "Gene", "Allele", "DNA", "Nucleus"],
+      answer: "Gene",
+    },
+    {
+      question: "Which blood group is known as the universal donor?",
+      choices: ["AB", "A", "B", "O", "AB+"],
+      answer: "O",
+    },
+    {
+      question: "What process do plants use to make their own food?",
+      choices: [
+        "Respiration",
+        "Transpiration",
+        "Photosynthesis",
+        "Osmosis",
+        "Digestion",
+      ],
+      answer: "Photosynthesis",
+    },
+    {
+      question: "Which part of the brain controls balance and coordination?",
+      choices: [
+        "Cerebrum",
+        "Medulla oblongata",
+        "Hypothalamus",
+        "Cerebellum",
+        "Thalamus",
+      ],
+      answer: "Cerebellum",
     },
 
+    // Chemistry
     {
-      question: "What is the third planent from the sun?",
-      choices: ["Mecury", "Jupiter", "Pluto", "Earth", "Mars"],
-      answer: "Earth",
+      question: "What is the chemical formula of water?",
+      choices: ["HO", "H2O2", "H2O", "OH", "HO2"],
+      answer: "H2O",
+    },
+    {
+      question: "What is the atomic number of Carbon?",
+      choices: ["8", "12", "14", "6", "4"],
+      answer: "6",
+    },
+    {
+      question:
+        "Which gas is produced when an acid reacts with a metal carbonate?",
+      choices: ["Oxygen", "Hydrogen", "Nitrogen", "Carbon dioxide", "Chlorine"],
+      answer: "Carbon dioxide",
+    },
+    {
+      question:
+        "What type of bond is formed when electrons are shared between atoms?",
+      choices: [
+        "Ionic bond",
+        "Metallic bond",
+        "Covalent bond",
+        "Hydrogen bond",
+        "Van der Waals bond",
+      ],
+      answer: "Covalent bond",
+    },
+    {
+      question: "Which element has the symbol Na?",
+      choices: ["Nitrogen", "Nickel", "Sodium", "Neon", "Neptunium"],
+      answer: "Sodium",
+    },
+
+    // Physics
+    {
+      question: "What is the SI unit of electric current?",
+      choices: ["Volt", "Watt", "Ohm", "Ampere", "Joule"],
+      answer: "Ampere",
+    },
+    {
+      question: "What is the speed of light in a vacuum?",
+      choices: [
+        "3 × 10^6 m/s",
+        "3 × 10^8 m/s",
+        "3 × 10^10 m/s",
+        "3 × 10^4 m/s",
+        "3 × 10^12 m/s",
+      ],
+      answer: "3 × 10^8 m/s",
+    },
+    {
+      question:
+        "Which law states that the pressure of a gas is inversely proportional to its volume at constant temperature?",
+      choices: [
+        "Charles's law",
+        "Newton's law",
+        "Boyle's law",
+        "Ohm's law",
+        "Hooke's law",
+      ],
+      answer: "Boyle's law",
+    },
+    {
+      question:
+        "What type of mirror is used as a rear-view mirror in vehicles?",
+      choices: [
+        "Concave mirror",
+        "Plane mirror",
+        "Parabolic mirror",
+        "Convex mirror",
+        "Spherical mirror",
+      ],
+      answer: "Convex mirror",
+    },
+    {
+      question: "What is the unit of measurement for frequency?",
+      choices: ["Watt", "Newton", "Hertz", "Pascal", "Joule"],
+      answer: "Hertz",
     },
   ];
 
@@ -176,6 +303,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // A choice that a user selected will be the selectedChoice
       list.addEventListener("click", () => {
+        choicesList
+          .querySelectorAll("li")
+          .forEach((item) => item.classList.remove("selected"));
+        list.classList.add("selected");
         // A variable named previous answer holds the array which is user answer that contains the choices that a user picks
         const previousAnswer = userAnswer[currentIndex];
 
@@ -280,16 +411,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const reviewContent = document.createElement("div");
 
     // question
-    const userQuestionText = document.createElement("h3");
+    const userQuestionText = document.createElement("h2");
     userQuestionText.textContent = reviewQuestion.question;
 
     // user answer
     const userChoice = document.createElement("p");
     userChoice.textContent = `Your answer: ${reviewUserAnswer}`;
+    userChoice.classList.add("special-font2");
 
     // correctAnswer
     const correctAnswer = document.createElement("p");
     correctAnswer.textContent = `Correct answer: ${reviewCorrectAnswer}`;
+    correctAnswer.classList.add("special-font2");
 
     // previous button visibility
     if (reviewIndex === 0) {

@@ -99,6 +99,23 @@ button:hover {
 }
 
 #restart-btn2 {
-  width: 100px;
+  width: 80px;
   font-size: medium;
+}
+
+#review-next-btn {
+  height: 45px;
+  width: 80px;
+  font-size: medium;
+}
+
+#review-prev-btn {
+  height: 45px;
+  width: 80px;
+  font-size: medium;
+}
+
+#review-navigator {
+  display: flex;
+  gap: 10px;
 }
