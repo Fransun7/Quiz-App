@@ -119,3 +119,8 @@ button:hover {
   display: flex;
   gap: 10px;
 }
+
+.fa-chevron-down.open {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}

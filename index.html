@@ -31,6 +31,11 @@
       href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -56,6 +61,7 @@
         </div>
 
         <button id="start-btn">Start Quiz</button>
+        <button id="menu-btn">Menu</button>
       </div>
 
       <div id="review-container" class="hidden">
@@ -64,6 +70,22 @@
           <button id="restart-btn2">Restart</button>
           <button id="review-next-btn">Next</button>
         </div>
+      </div>
+
+      <div id="menu-container" class="hidden">
+        <div id="subject-buttons">
+          <button id="biology-btn">
+            Biology <i id="biology-icon" class="fa-solid fa-chevron-down"></i>
+          </button>
+          <button id="chemistry-btn">
+            Chemistry <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <button id="physics-btn">
+            Physics <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </div>
+        <div id="biology-dropdown-list" class="hidden"></div>
+        <button id="menu-btn2" class="hidden">Menu</button>
       </div>
     </div>
     <script src="script.js"></script>
