@@ -36,6 +36,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="container">
@@ -46,10 +53,27 @@
           <ul id="choices-list">
             <!-- Choices will be added dynamically here -->
           </ul>
+
+          <!-- Navigators -->
           <div id="navigator" class="hidden">
-            <button id="prev-btn" class="hidden">Previous Question</button>
-            <button id="next-btn" class="hidden">Next Question</button>
+            <div class="button-container">
+              <button id="prev-btn" class="button-3d">
+                <div class="button-top">
+                  <span class="material-icons">❮</span>
+                </div>
+                <div class="button-bottom"></div>
+                <div class="button-base"></div>
+              </button>
+              <button id="next-btn" class="button-3d">
+                <div class="button-top">
+                  <span class="material-icons">❯</span>
+                </div>
+                <div class="button-bottom"></div>
+                <div class="button-base"></div>
+              </button>
+            </div>
           </div>
+
           <div id="quiz-status"></div>
           <button id="score-btn" class="hidden">Check Score</button>
         </div>
@@ -60,8 +84,10 @@
           <button id="restart-btn1">Restart Quiz</button>
         </div>
 
-        <button id="start-btn">Start Quiz</button>
-        <button id="menu-btn">Menu</button>
+        <div id="first-container">
+          <a id="start-btn" class="codepen-button"><span>Start Quiz</span></a>
+          <button id="menu-btn" class="hidden">Menu</button>
+        </div>
       </div>
 
       <div id="review-container" class="hidden">

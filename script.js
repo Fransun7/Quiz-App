@@ -1671,6 +1671,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showQuestion() {
     const currentQuestion = quizQuestions[currentIndex];
     questionText.textContent = currentQuestion.question;
+    questionText.classList.add("special-color");
   }
 
   //   Displaying choices
@@ -1779,6 +1780,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // what displays when the quiz starts
   function startQuiz() {
     startBtn.classList.add("hidden");
+    menuBtn.classList.remove("hidden");
     questionContainer.classList.remove("hidden");
     showQuestion();
     showChoices();
