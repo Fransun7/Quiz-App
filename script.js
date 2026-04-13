@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const biologyIcon = document.getElementById("biology-icon");
   const chemistryIcon = document.getElementById("chemistry-icon");
   const physicsIcon = document.getElementById("physics-icon");
+  const questionNo = document.getElementById("question-no");
 
   //   Array of objects that holds the question, choices and answers
 
@@ -1671,6 +1672,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function showQuestion() {
     const currentQuestion = quizQuestions[currentIndex];
     questionText.textContent = currentQuestion.question;
+    questionNo.innerHTML = `Question ${currentIndex + 1}`;
+    questionNo.classList.add("question-tag");
     questionText.classList.add("special-color");
   }
 
@@ -1694,6 +1697,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const previousAnswer = userAnswer[currentIndex];
 
         selectedChoice = choice;
+
         console.log("selected choice:", selectedChoice);
 
         // if the selectedChoice is equal to the answer of the current question, then the score will be updated
