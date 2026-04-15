@@ -1490,6 +1490,7 @@ document.addEventListener("DOMContentLoaded", () => {
       choicesList.classList.remove("hidden");
       reviewContainer.classList.add("hidden");
       startQuiz();
+      questionNo.classList.remove("hidden");
     });
   }
 
@@ -1507,6 +1508,7 @@ document.addEventListener("DOMContentLoaded", () => {
       choicesList.classList.remove("hidden");
       reviewContainer.classList.add("hidden");
       startQuiz();
+      questionNo.classList.remove("hidden");
     });
   }
 
@@ -1593,8 +1595,9 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.biology;
             currentIndex = index;
             dropdownList.classList.add("hidden");
-            menuContainer.classList.add("hidden");
             startQuiz();
+            menuBtn.classList.add("hidden");
+            menuBtn2.classList.remove("hidden");
           });
           dropdownList.appendChild(questionList);
           menuBtn2.classList.remove("hidden");
@@ -1626,8 +1629,8 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.chemistry;
             currentIndex = index;
             dropdownList.classList.add("hidden");
-            menuContainer.classList.add("hidden");
             startQuiz();
+            menuBtn.classList.add("hidden");
           });
           dropdownList.appendChild(questionList);
           menuBtn2.classList.remove("hidden");
@@ -1658,8 +1661,9 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.physics;
             currentIndex = index;
             dropdownList.classList.add("hidden");
-            menuContainer.classList.add("hidden");
             startQuiz();
+            menuBtn.classList.add("hidden");
+            menuBtn2.classList.remove("hidden");
           });
           dropdownList.appendChild(questionList);
           menuBtn2.classList.remove("hidden");
@@ -1674,6 +1678,7 @@ document.addEventListener("DOMContentLoaded", () => {
     questionText.textContent = currentQuestion.question;
     questionNo.innerHTML = `Question ${currentIndex + 1}`;
     questionNo.classList.add("question-tag");
+
     questionText.classList.add("special-color");
   }
 
@@ -1728,6 +1733,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // if the previous choice picked is the same as current choice picked then nothing happens
         if (previousAnswer === selectedChoice) {
+          alert("choice has already been picked!");
           console.log("choice has already been picked!");
           return;
         }
@@ -1761,6 +1767,8 @@ document.addEventListener("DOMContentLoaded", () => {
       prevBtn.classList.add("hidden");
       const quizCompleted = document.createElement("h2");
       quizCompleted.textContent = "Quiz Completed!";
+      questionNo.classList.add("hidden");
+      menuContainer.classList.add("hidden");
       quizStatus.appendChild(quizCompleted);
       scoreBtn.classList.remove("hidden");
       questionContainer.appendChild(scoreBtn);
@@ -1778,6 +1786,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayScore() {
     questionContainer.classList.add("hidden");
     resultContainer.classList.remove("hidden");
+    questionNo.classList.add("hidden ");
     userScore.innerHTML = `${score} out of ${quizQuestions.length}`;
   }
 
@@ -1853,6 +1862,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startBtn.classList.add("hidden");
     menuBtn.classList.add("hidden");
     menuContainer.classList.remove("hidden");
+    menuBtn.classList.add("special-color");
   }
 
   function showMenu2() {

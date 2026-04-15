@@ -304,6 +304,13 @@ so that it is smooth among other more minor things */
 
 #menu-btn {
   width: 50%;
+  border-color: green;
+}
+
+#menu-btn2 {
+  width: 50%;
+  border: solid;
+  border-color: whitesmoke;
 }
 
 .special-color {
@@ -325,4 +332,8 @@ so that it is smooth among other more minor things */
   border-color: white;
   border-radius: 20px;
   padding: 10px;
+}
+
+.menu-btn2 {
+  margin-top: 50px;
 }
