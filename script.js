@@ -1446,7 +1446,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let reviewIndex = 0;
   let selectedChoice = null;
-  let time = 90;
+  let time = 300;
   let timeinterval = null;
 
   // score is at 0 at default
@@ -1484,7 +1484,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (restartBtn1) {
     restartBtn1.addEventListener("click", () => {
       clearInterval(time);
-      time = 90;
+      time = 300;
       score = 0;
       selectedChoice = null;
       resultContainer.classList.add("hidden");
