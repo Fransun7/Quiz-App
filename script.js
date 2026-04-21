@@ -9,18 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreBtn = document.getElementById("score-btn");
   const resultContainer = document.getElementById("result-container");
   const userScore = document.getElementById("score");
-  const restartBtn1 = document.getElementById("restart-btn1");
   const quizStatus = document.getElementById("quiz-status");
   const reviewBtn = document.getElementById("review");
   const reviewContainer = document.getElementById("review-container");
   // const restartContainer = document.getElementById("restart-container");
   const reviewPrevBtn = document.getElementById("review-prev-btn");
+  const restartBtn1 = document.getElementById("restart-btn1");
   const restartBtn2 = document.getElementById("restart-btn2");
   const reviewNextBtn = document.getElementById("review-next-btn");
   const reviewNavigator = document.getElementById("review-navigator");
   const menuContainer = document.getElementById("menu-container");
   const menuBtn = document.getElementById("menu-btn");
   const menuBtn2 = document.getElementById("menu-btn2");
+  const menuBtn3 = document.getElementById("menu-btn3");
   const biologyBtn = document.getElementById("biology-btn");
   const chemistryBtn = document.getElementById("chemistry-btn");
   const physicsBtn = document.getElementById("physics-btn");
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const chemistryIcon = document.getElementById("chemistry-icon");
   const physicsIcon = document.getElementById("physics-icon");
   const questionNo = document.getElementById("question-no");
+  const timerDisplay = document.getElementById("timer-display");
 
   //   Array of objects that holds the question, choices and answers
 
@@ -1443,7 +1445,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 0;
   let reviewIndex = 0;
   let selectedChoice = null;
-  let hoverTimer;
+  let time = 90;
+  let timeinterval = null;
 
   // score is at 0 at default
   let score = 0;
@@ -1489,7 +1492,10 @@ document.addEventListener("DOMContentLoaded", () => {
       questionText.classList.remove("hidden");
       choicesList.classList.remove("hidden");
       reviewContainer.classList.add("hidden");
-      startQuiz();
+      showQuestion();
+      showChoices();
+      menuBtn3.classList.remove("hidden");
+      menuBtn.classList.add("hidden");
       questionNo.classList.remove("hidden");
     });
   }
@@ -1572,6 +1578,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  if (menuBtn3) {
+    menuBtn3.addEventListener("click", () => {
+      showMenu3();
+    });
+  }
+
   if (biologyBtn) {
     biologyBtn.addEventListener("click", () => {
       // biology dropdwon visibility
@@ -1595,6 +1607,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.biology;
             currentIndex = index;
             dropdownList.classList.add("hidden");
+            startTimer();
             startQuiz();
             menuBtn.classList.add("hidden");
             menuBtn2.classList.remove("hidden");
@@ -1629,6 +1642,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.chemistry;
             currentIndex = index;
             dropdownList.classList.add("hidden");
+            startTimer();
             startQuiz();
             menuBtn.classList.add("hidden");
           });
@@ -1661,6 +1675,7 @@ document.addEventListener("DOMContentLoaded", () => {
             quizQuestions = quizSubjects.physics;
             currentIndex = index;
             dropdownList.classList.add("hidden");
+            startTimer();
             startQuiz();
             menuBtn.classList.add("hidden");
             menuBtn2.classList.remove("hidden");
@@ -1786,7 +1801,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function displayScore() {
     questionContainer.classList.add("hidden");
     resultContainer.classList.remove("hidden");
-    questionNo.classList.add("hidden ");
+    questionNo.classList.add("hidden");
     userScore.innerHTML = `${score} out of ${quizQuestions.length}`;
   }
 
@@ -1870,5 +1885,57 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdownList.classList.add("hidden");
     menuBtn2.classList.add("hidden");
     subjectBtn.classList.remove("hidden");
+  }
+
+  function showMenu3() {
+    questionContainer.classList.add("hidden");
+    dropdownList.classList.add("hidden");
+    menuContainer.classList.remove("hidden");
+    menuBtn2.classList.add("hidden");
+    menuBtn3.classList.add("hidden");
+    subjectBtn.classList.remove("hidden");
+  }
+
+  function startTimer() {
+    clearInterval(timeinterval);
+    timeinterval = setInterval(() => {
+      // update time
+      time--;
+
+      // update time display
+      const minute = Math.floor(time / 60);
+      const seconds = time % 60;
+      timerDisplay.textContent = `${minute} : ${seconds < 10 ? "0" : ""} ${seconds}`;
+
+      // action when time runs out
+      if (time === 0) {
+        clearInterval(timeinterval);
+        timeUp();
+      }
+
+      // when time is left with 15 seconds
+      if (time === 15) {
+        timerDisplay.classList.add("red-color");
+      }
+    }, 1000);
+  }
+
+  function timeUp() {
+    timerDisplay.classList.add("hidden");
+    questionText.classList.add("hidden");
+    choicesList.classList.add("hidden");
+    navigator.classList.add("hidden");
+    questionNo.classList.add("hidden");
+    prevBtn.classList.add("hidden");
+    nextBtn.classList.add("hidden");
+    menuContainer.classList.add("hidden");
+
+    const timeUpMessage = document.createElement("h2");
+    timeUpMessage.textContent = "Time's up!";
+    timeUpMessage.classList.add("time-up-message");
+    quizStatus.appendChild(timeUpMessage);
+
+    scoreBtn.classList.remove("hidden");
+    questionContainer.appendChild(scoreBtn);
   }
 });

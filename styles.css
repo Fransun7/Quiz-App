@@ -337,3 +337,22 @@ so that it is smooth among other more minor things */
 .menu-btn2 {
   margin-top: 50px;
 }
+
+#menu-btn3 {
+  margin-top: 30px;
+  width: 50%;
+}
+
+#timer-display {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.time-up-message {
+  color: red;
+  font-weight: bold;
+}
+
+.red-color {
+  color: red;
+}
