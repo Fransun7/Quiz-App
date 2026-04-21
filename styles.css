@@ -343,8 +343,8 @@ so that it is smooth among other more minor things */
   width: 50%;
 }
 
-#timer-display {
-  font-size: 40px;
+#timer {
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -355,4 +355,9 @@ so that it is smooth among other more minor things */
 
 .red-color {
   color: red;
+}
+
+#timer .fa-clock {
+  font-size: 24px;
+  margin-right: 4px;
 }

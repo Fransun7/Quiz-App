@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const physicsIcon = document.getElementById("physics-icon");
   const questionNo = document.getElementById("question-no");
   const timerDisplay = document.getElementById("timer-display");
+  const timer = document.getElementById("timer");
 
   //   Array of objects that holds the question, choices and answers
 
@@ -1482,6 +1483,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Restart the quiz afresh
   if (restartBtn1) {
     restartBtn1.addEventListener("click", () => {
+      clearInterval(time);
+      time = 90;
       score = 0;
       selectedChoice = null;
       resultContainer.classList.add("hidden");
@@ -1492,6 +1495,7 @@ document.addEventListener("DOMContentLoaded", () => {
       questionText.classList.remove("hidden");
       choicesList.classList.remove("hidden");
       reviewContainer.classList.add("hidden");
+      startTimer();
       showQuestion();
       showChoices();
       menuBtn3.classList.remove("hidden");
@@ -1776,6 +1780,8 @@ document.addEventListener("DOMContentLoaded", () => {
       showQuestion();
       showChoices();
     } else {
+      clearInterval(timeinterval);
+      timer.classList.add("hidden");
       questionText.classList.add("hidden");
       choicesList.classList.add("hidden");
       nextBtn.classList.add("hidden");
@@ -1905,11 +1911,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // update time display
       const minute = Math.floor(time / 60);
       const seconds = time % 60;
+      timer.classList.remove("hidden");
       timerDisplay.textContent = `${minute} : ${seconds < 10 ? "0" : ""} ${seconds}`;
 
       // action when time runs out
       if (time === 0) {
         clearInterval(timeinterval);
+        timer.classList.add("hidden");
         timeUp();
       }
 
